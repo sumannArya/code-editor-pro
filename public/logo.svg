@@ -1,0 +1,31 @@
+<svg
+  width="120"
+  height="120"
+  viewBox="0 0 120 120"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="56" fill="#EDE9FE"/>
+
+  <!-- Left angle -->
+  <path
+    d="M50 42 L38 60 L50 78"
+    stroke="#6D5DF6"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Right angle -->
+  <path
+    d="M70 42 L82 60 L70 78"
+    stroke="#6D5DF6"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Center dot -->
+  <circle cx="60" cy="60" r="4" fill="#6D5DF6" />
+</svg>
