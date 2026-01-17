@@ -516,9 +516,10 @@ export const PlaygroundEditor = ({
     }
   }
 
+  // Optimize language update to only run when extension changes
   useEffect(() => {
     updateEditorLanguage()
-  }, [activeFile])
+  }, [activeFile?.fileExtension])
 
   // Yjs Integration
   useEffect(() => {
@@ -528,6 +529,12 @@ export const PlaygroundEditor = ({
     const doc = new Y.Doc()
     const provider = new WebsocketProvider('wss://demos.yjs.dev', `code-editor-pro-${playgroundId}`, doc)
 
+    // Set user awareness immediately
+    provider.awareness.setLocalStateField('user', {
+      name: currentUser.name || "Anonymous",
+      color: userColorRef.current
+    })
+
     docRef.current = doc
     providerRef.current = provider
 
@@ -535,7 +542,7 @@ export const PlaygroundEditor = ({
       provider.disconnect()
       doc.destroy()
     }
-  }, [playgroundId])
+  }, [playgroundId, currentUser.name]) // Update if user name changes
 
   useEffect(() => {
     if (!activeFile || !editorRef.current || !docRef.current || !providerRef.current) return
@@ -555,31 +562,36 @@ export const PlaygroundEditor = ({
 
     const ytext = doc.getText(activeFile.id)
 
-    // Verify content sync
-    // If ytext is empty but we have local content, initialize ytext
-    if (ytext.toString() === "" && content) {
-      doc.transact(() => {
-        ytext.insert(0, content)
-      })
+    // Wait for sync before deciding to insert content
+    const handleSync = () => {
+      // If ytext is empty but we have local content, initialize ytext
+      // CRITICAL Check: Only insert if truly empty to avoid overwriting/duplication
+      if (ytext.toString() === "" && content) {
+        console.log("Initializing Yjs content for", activeFile.filename)
+        doc.transact(() => {
+          ytext.insert(0, content)
+        })
+      }
+    }
+
+    if (provider.synced) {
+      handleSync()
+    } else {
+      provider.once('sync', handleSync)
     }
 
     // Bind Yjs to Monaco
     const binding = new MonacoBinding(ytext, model, new Set([editor]), provider.awareness)
     bindingRef.current = binding
 
-    // Set user awareness
-    provider.awareness.setLocalStateField('user', {
-      name: currentUser.name || "Anonymous",
-      color: userColorRef.current
-    })
-
     return () => {
       if (bindingRef.current) {
         bindingRef.current.destroy()
         bindingRef.current = null
       }
+      provider.off('sync', handleSync)
     }
-  }, [activeFile?.id, playgroundId, currentUser]) // Re-run when file changes
+  }, [activeFile?.id, playgroundId]) // Re-run when file changes
 
 
   // Cleanup on unmount
@@ -619,7 +631,8 @@ export const PlaygroundEditor = ({
 
       <Editor
         height="100%"
-        value={content}
+        defaultValue={content} // Use defaultValue for initial load
+        // value={content} // CRITICAL: Do NOT control value when using Yjs
         onChange={(value) => onContentChange(value || "")}
         onMount={handleEditorDidMount}
         language={activeFile ? getEditorLanguage(activeFile.fileExtension || "") : "plaintext"}
