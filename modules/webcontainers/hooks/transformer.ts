@@ -1,4 +1,4 @@
-interface TemplateItem {
+﻿interface TemplateItem {
     filename: string;
     fileExtension: string;
     content: string;

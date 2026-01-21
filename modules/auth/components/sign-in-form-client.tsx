@@ -1,6 +1,6 @@
-
+﻿
 import React from "react";
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/ui/card";
+} from "@/components/ui/card";
 import { Chrome, Github } from "lucide-react";
 import { signIn } from "@/auth";
 
@@ -67,5 +67,6 @@ const SignInFormClient = () => {
 };
 
 export default SignInFormClient;
+
 
 

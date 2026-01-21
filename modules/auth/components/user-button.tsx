@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import {
   DropdownMenu,
@@ -6,9 +6,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { LogOut, User } from "lucide-react";
 import LogoutButton from "./logout-button";
@@ -51,3 +51,4 @@ const UserButton = () => {
 };
 
 export default UserButton;
+

@@ -1,4 +1,4 @@
-"use server"
+﻿"use server"
 
 import { db } from "@/lib/db"
 import { auth } from "@/auth"
@@ -111,3 +111,4 @@ export const respondToCollabInvite = async (inviteId: string, status: "ACCEPTED"
         return { error: "Failed to respond to invite" }
     }
 }
+

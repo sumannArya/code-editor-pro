@@ -1,4 +1,4 @@
-import * as React from "react"
+﻿import * as React from "react"
 import {
   AlertDialog,
   AlertDialogContent,
@@ -8,7 +8,7 @@ import {
   AlertDialogFooter,
   AlertDialogCancel,
   AlertDialogAction,
-} from "@/components/ui/ui/alert-dialog"
+} from "@/components/ui/alert-dialog"
 import { cn } from "@/lib/utils"
 
 interface DeleteDialogProps {
@@ -56,3 +56,4 @@ export function DeleteDialog({
     </AlertDialog>
   )
 }
+

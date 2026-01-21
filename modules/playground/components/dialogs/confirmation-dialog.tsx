@@ -1,4 +1,4 @@
-import * as React from "react"
+﻿import * as React from "react"
 import {
   Dialog,
   DialogContent,
@@ -6,8 +6,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/ui/dialog"
-import { Button } from "@/components/ui/ui/button"
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 
 export interface ConfirmationDialogProps {
   isOpen: boolean
@@ -47,3 +47,4 @@ export function ConfirmationDialog({
     </Dialog>
   )
 }
+

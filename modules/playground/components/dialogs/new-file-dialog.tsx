@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,9 +8,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/ui/dialog";
-import { Input } from "@/components/ui/ui/input";
-import { Label } from "@/components/ui/ui/label";
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import React from "react";
 
 interface NewFileDialogProps {
@@ -84,3 +84,4 @@ function NewFileDialog({ isOpen, onClose, onCreateFile }: NewFileDialogProps) {
 }
 
 export default NewFileDialog;   
+

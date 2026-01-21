@@ -1,17 +1,17 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/ui/popover"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useRouter } from "next/navigation"
-import { Input } from "@/components/ui/ui/input"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/ui/avatar"
+import { Input } from "@/components/ui/input"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { UserPlus, Users, Check, X, Loader2, Code2 } from "lucide-react"
 import { searchUsers, sendFriendRequest, getFriendRequests, acceptFriendRequest, rejectFriendRequest, getFriends } from "@/modules/auth/actions/friends"
 import { getCollabInvites, respondToCollabInvite } from "@/modules/auth/actions/collab"
 import { toast } from "sonner"
-import { ScrollArea } from "@/components/ui/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 export const FriendsPopover = () => {
     const router = useRouter()
@@ -247,3 +247,4 @@ export const FriendsPopover = () => {
         </Popover>
     )
 }
+

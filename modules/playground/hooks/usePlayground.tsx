@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+﻿import { useState, useEffect, useCallback } from "react";
 import { toast } from "sonner";
 
 import type { TemplateFolder } from "../lib/path-to-json";
@@ -106,3 +106,4 @@ export const usePlayground = (id: string): UsePlaygroundReturn => {
     saveTemplateData,
   };
 };
+

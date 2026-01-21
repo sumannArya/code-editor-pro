@@ -1,7 +1,7 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,7 +9,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 // import {
 //   Drawer,
 //   DrawerClose,
@@ -19,9 +19,9 @@ import {
 //   DrawerHeader,
 //   DrawerTitle,
 //   DrawerTrigger,
-// } from "@/components/ui/ui/drawer";
-import { Progress } from "@/components/ui/ui/progress";
-import { Badge } from "@/components/ui/ui/badge";
+// } from "@/components/ui/drawer";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
 import { 
   Bot, 
   Code, 
@@ -187,3 +187,4 @@ const ToggleAI: React.FC<ToggleAIProps> = ({
 };
 
 export default ToggleAI;
+

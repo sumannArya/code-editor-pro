@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/ui/button";
+﻿import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
@@ -32,3 +32,4 @@ export default function Home() {
     </div>
   );
 }
+

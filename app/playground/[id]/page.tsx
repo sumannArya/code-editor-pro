@@ -9,28 +9,28 @@ const WebContainerPreview = dynamic(
 
 
 
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/ui/resizable";
-import { Separator } from "@/components/ui/ui/separator";
-import { SidebarInset, SidebarTrigger } from "@/components/ui/ui/sidebar";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/ui/tabs";
+} from "@/components/ui/resizable";
+import { Separator } from "@/components/ui/separator";
+import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/ui/tooltip";
+} from "@/components/ui/tooltip";
 import LoadingStep from "@/modules/playground/components/loader";
 import { PlaygroundEditor } from "@/modules/playground/components/playground-editor";
 import { TemplateFileTree } from "@/modules/playground/components/playground-explorer";
@@ -242,8 +242,9 @@ const MainPlaygroundPage = () => {
           await instance.fs.writeFile(filePath, fileToSave.content);
         }
 
-        const newTemplateData = await saveTemplateData(updatedTemplateData);
-        setTemplateData(newTemplateData || updatedTemplateData);
+        await saveTemplateData(updatedTemplateData);
+        // Use the updated data directly since save returns void
+        setTemplateData(updatedTemplateData);
         // Update open files
         const updatedOpenFiles = openFiles.map((f) =>
           f.id === targetFileId

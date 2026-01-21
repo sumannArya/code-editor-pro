@@ -1,18 +1,18 @@
-
+﻿
 "use client"
 
 import Image from "next/image"
 import { format } from "date-fns"
 import type { Project } from "../types"
-import { Badge } from "@/components/ui/ui/badge"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/ui/table"
+import { Badge } from "@/components/ui/badge"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,7 +22,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/ui/alert-dialog"
+} from "@/components/ui/alert-dialog"
 import {
   Dialog,
   DialogContent,
@@ -30,11 +30,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/ui/dialog"
-import { Button } from "@/components/ui/ui/button"
-import { Input } from "@/components/ui/ui/input"
-import { Label } from "@/components/ui/ui/label"
-import { Textarea } from "@/components/ui/ui/textarea"
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import Link from "next/link"
 import { useState } from "react"
 import { MoreHorizontal, Edit3, Trash2, ExternalLink, Copy, Download, Eye } from "lucide-react"
@@ -68,7 +68,7 @@ export default function ProjectTable({
   const [editData, setEditData] = useState<EditProjectData>({ title: "", description: "" })
   const [isLoading, setIsLoading] = useState(false)
   const [favoutrie, setFavourite] = useState(false)
-  
+
   const handleEditClick = (project: Project) => {
     setSelectedProject(project);
     setEditData({
@@ -85,29 +85,29 @@ export default function ProjectTable({
   }
 
   const handleUpdateProject = async () => {
-    if(!selectedProject || !onUpdateProject) return;
+    if (!selectedProject || !onUpdateProject) return;
 
     setIsLoading(true);
 
     try {
-      await onUpdateProject(selectedProject.id , editData)
+      await onUpdateProject(selectedProject.id, editData)
       setEditDialogOpen(false);
       toast.success("Project updated successfully")
     } catch (error) {
       toast.error("Failed to update project");
       console.error("Error updating project:", error);
     }
-    finally{
+    finally {
       setIsLoading(false)
     }
   }
 
   const handleMarkasFavorite = async (project: Project) => {
-   //    Write your logic here
+    //    Write your logic here
   }
 
   const handleDeleteProject = async () => {
-    if(!selectedProject || !onDeleteProject) return;
+    if (!selectedProject || !onDeleteProject) return;
 
     setIsLoading(true);
 
@@ -120,13 +120,13 @@ export default function ProjectTable({
       toast.error("Failed to delete project");
       console.error("Error deleting project:", error);
     }
-    finally{
+    finally {
       setIsLoading(false)
     }
   }
 
   const handleDuplicateProject = async (project: Project) => {
-    if(!onDuplicateProject) return;
+    if (!onDuplicateProject) return;
 
     setIsLoading(true);
     try {
@@ -185,7 +185,7 @@ export default function ProjectTable({
                     <div className="w-8 h-8 rounded-full overflow-hidden">
                       <Image
                         src={project.user.image || "/placeholder.svg"}
-                        alt={project.user.name}
+                        alt={project.user.name || "User"}
                         width={32}
                         height={32}
                         className="object-cover"
@@ -314,5 +314,6 @@ export default function ProjectTable({
     </>
   )
 }
+
 
 

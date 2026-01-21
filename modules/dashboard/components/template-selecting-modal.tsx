@@ -1,18 +1,18 @@
-
+﻿
 "use client";
 
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/ui/dialog";
-import { Input } from "@/components/ui/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/ui/radio-group";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/ui/tabs";
-import { Label } from "@/components/ui/ui/label";
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Label } from "@/components/ui/label";
 import {
   ChevronRight,
   Search,
@@ -458,3 +458,4 @@ const TemplateSelectionModal = ({
 };
 
 export default TemplateSelectionModal;
+

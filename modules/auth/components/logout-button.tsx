@@ -1,4 +1,4 @@
-
+﻿
 import React from 'react'
 import { LogoutButtonProps } from '../types'
 import { useRouter } from 'next/navigation'
@@ -18,3 +18,4 @@ const LogoutButton = ({children}:LogoutButtonProps) => {
 }
 
 export default LogoutButton
+

@@ -1,4 +1,4 @@
-import type { Monaco } from "@monaco-editor/react";
+﻿import type { Monaco } from "@monaco-editor/react";
 
 export const getEditorLanguage = (fileExtension: string): string => {
   const extension = fileExtension.toLowerCase();

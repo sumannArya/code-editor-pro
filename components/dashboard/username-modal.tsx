@@ -1,9 +1,9 @@
-"use client"
+﻿"use client"
 
 import { useEffect, useState } from "react"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/ui/dialog"
-import { Button } from "@/components/ui/ui/button"
-import { Input } from "@/components/ui/ui/input"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { updateUsername } from "@/modules/auth/actions/friends"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
@@ -68,3 +68,4 @@ export const UsernameModal = () => {
         </Dialog>
     )
 }
+

@@ -1,0 +1,16 @@
+﻿app/playground/[id]/page.tsx(246,25): error TS1345: An expression of type 'void' cannot be tested for truthiness.
+components/ui/ui/button-group.tsx(5,27): error TS2307: Cannot find module '@/components/ui/separator' or its corresponding type declarations.
+components/ui/ui/calendar.tsx(16,40): error TS2307: Cannot find module '@/components/ui/button' or its corresponding type declarations.
+components/ui/ui/carousel.tsx(10,24): error TS2307: Cannot find module '@/components/ui/button' or its corresponding type declarations.
+components/ui/ui/command.tsx(14,8): error TS2307: Cannot find module '@/components/ui/dialog' or its corresponding type declarations.
+components/ui/ui/field.tsx(7,23): error TS2307: Cannot find module '@/components/ui/label' or its corresponding type declarations.
+components/ui/ui/field.tsx(8,27): error TS2307: Cannot find module '@/components/ui/separator' or its corresponding type declarations.
+components/ui/ui/form.tsx(17,23): error TS2307: Cannot find module '@/components/ui/label' or its corresponding type declarations.
+components/ui/ui/input-group.tsx(7,24): error TS2307: Cannot find module '@/components/ui/button' or its corresponding type declarations.
+components/ui/ui/input-group.tsx(8,23): error TS2307: Cannot find module '@/components/ui/input' or its corresponding type declarations.
+components/ui/ui/input-group.tsx(9,26): error TS2307: Cannot find module '@/components/ui/textarea' or its corresponding type declarations.
+components/ui/ui/item.tsx(6,27): error TS2307: Cannot find module '@/components/ui/separator' or its corresponding type declarations.
+components/ui/ui/pagination.tsx(9,45): error TS2307: Cannot find module '@/components/ui/button' or its corresponding type declarations.
+components/ui/ui/pagination.tsx(75,7): error TS2783: 'size' is specified more than once, so this usage will be overwritten.
+components/ui/ui/pagination.tsx(92,7): error TS2783: 'size' is specified more than once, so this usage will be overwritten.
+components/ui/ui/toggle-group.tsx(8,32): error TS2307: Cannot find module '@/components/ui/toggle' or its corresponding type declarations.

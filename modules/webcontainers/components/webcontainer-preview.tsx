@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useState, useRef } from "react";
 
 import { transformToWebContainerFormat } from "../hooks/transformer";
 import { CheckCircle, Loader2, XCircle } from "lucide-react";
-import { Progress } from "@/components/ui/ui/progress";
+import { Progress } from "@/components/ui/progress";
 
 import { WebContainer } from "@webcontainer/api";
 import { TemplateFolder } from "@/modules/playground/lib/path-to-json";
@@ -79,14 +79,14 @@ const WebContainerPreview = ({
             // Files are already mounted, just reconnect to existing server
             if (terminalRef.current?.writeToTerminal) {
               terminalRef.current.writeToTerminal(
-                "🔄 Reconnecting to existing WebContainer session...\r\n"
+                "ðŸ”„ Reconnecting to existing WebContainer session...\r\n"
               );
             }
 
             instance.on("server-ready", (port: number, url: string) => {
               if (terminalRef.current?.writeToTerminal) {
                 terminalRef.current.writeToTerminal(
-                  `🌐 Reconnected to server at ${url}\r\n`
+                  `ðŸŒ Reconnected to server at ${url}\r\n`
                 );
               }
 
@@ -110,7 +110,7 @@ const WebContainerPreview = ({
         // Write to terminal
         if (terminalRef.current?.writeToTerminal) {
           terminalRef.current.writeToTerminal(
-            "🔄 Transforming template data...\r\n"
+            "ðŸ”„ Transforming template data...\r\n"
           );
         }
 
@@ -127,14 +127,14 @@ const WebContainerPreview = ({
 
         if (terminalRef.current?.writeToTerminal) {
           terminalRef.current.writeToTerminal(
-            "📁 Mounting files to WebContainer...\r\n"
+            "ðŸ“ Mounting files to WebContainer...\r\n"
           );
         }
         await instance.mount(files);
 
         if (terminalRef.current?.writeToTerminal) {
           terminalRef.current.writeToTerminal(
-            "✅ Files mounted successfully\r\n"
+            "âœ… Files mounted successfully\r\n"
           );
         }
         setLoadingState((prev) => ({
@@ -148,7 +148,7 @@ const WebContainerPreview = ({
 
         if (terminalRef.current?.writeToTerminal) {
           terminalRef.current.writeToTerminal(
-            "📦 Installing dependencies...\r\n"
+            "ðŸ“¦ Installing dependencies...\r\n"
           );
         }
 
@@ -174,7 +174,7 @@ const WebContainerPreview = ({
 
         if (terminalRef.current?.writeToTerminal) {
           terminalRef.current.writeToTerminal(
-            "✅ Dependencies installed successfully\r\n"
+            "âœ… Dependencies installed successfully\r\n"
           );
         }
 
@@ -189,7 +189,7 @@ const WebContainerPreview = ({
 
         if (terminalRef.current?.writeToTerminal) {
           terminalRef.current.writeToTerminal(
-            "🚀 Starting development server...\r\n"
+            "ðŸš€ Starting development server...\r\n"
           );
         }
 
@@ -198,7 +198,7 @@ const WebContainerPreview = ({
         instance.on("server-ready", (port: number, url: string) => {
           if (terminalRef.current?.writeToTerminal) {
             terminalRef.current.writeToTerminal(
-              `🌐 Server ready at ${url}\r\n`
+              `ðŸŒ Server ready at ${url}\r\n`
             );
           }
           setPreviewUrl(url);
@@ -225,7 +225,7 @@ const WebContainerPreview = ({
         console.error("Error setting up container:", err);
         const errorMessage = err instanceof Error ? err.message : String(err);
         if (terminalRef.current?.writeToTerminal) {
-          terminalRef.current.writeToTerminal(`❌ Error: ${errorMessage}\r\n`);
+          terminalRef.current.writeToTerminal(`âŒ Error: ${errorMessage}\r\n`);
         }
         setSetupError(errorMessage);
         setIsSetupInProgress(false);
@@ -367,3 +367,4 @@ const WebContainerPreview = ({
 };
 
 export default WebContainerPreview;
+

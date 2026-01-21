@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useRef, useState, useCallback, forwardRef, useImperativeHandle } from "react";
 import { Terminal } from "xterm";
@@ -6,8 +6,8 @@ import { FitAddon } from "xterm-addon-fit";
 import { WebLinksAddon } from "xterm-addon-web-links";
 import { SearchAddon } from "xterm-addon-search";
 import "xterm/css/xterm.css";
-import { Button } from "@/components/ui/ui/button";
-import { Input } from "@/components/ui/ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Search, Copy, Trash2, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -312,7 +312,7 @@ TerminalComponent = forwardRef<TerminalRef, TerminalProps>(({
     }, 100);
 
     // Welcome message
-    terminal.writeln("🚀 WebContainer Terminal");
+    terminal.writeln("ðŸš€ WebContainer Terminal");
     terminal.writeln("Type 'help' for available commands");
     writePrompt();
 
@@ -324,12 +324,12 @@ TerminalComponent = forwardRef<TerminalRef, TerminalProps>(({
 
     try {
       setIsConnected(true);
-      term.current.writeln("✅ Connected to WebContainer");
+      term.current.writeln("âœ… Connected to WebContainer");
       term.current.writeln("Ready to execute commands");
       writePrompt();
     } catch (error) {
       setIsConnected(false);
-      term.current.writeln("❌ Failed to connect to WebContainer");
+      term.current.writeln("âŒ Failed to connect to WebContainer");
       console.error("WebContainer connection error:", error);
     }
   }, [webContainerInstance, writePrompt]);
@@ -337,7 +337,7 @@ TerminalComponent = forwardRef<TerminalRef, TerminalProps>(({
   const clearTerminal = useCallback(() => {
     if (term.current) {
       term.current.clear();
-      term.current.writeln("🚀 WebContainer Terminal");
+      term.current.writeln("ðŸš€ WebContainer Terminal");
       writePrompt();
     }
   }, [writePrompt]);
@@ -509,3 +509,4 @@ TerminalComponent = forwardRef<TerminalRef, TerminalProps>(({
 TerminalComponent.displayName = "TerminalComponent";
 
 export default TerminalComponent;
+

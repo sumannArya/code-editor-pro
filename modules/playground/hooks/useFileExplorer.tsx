@@ -1,4 +1,4 @@
-import { create } from "zustand";
+﻿import { create } from "zustand";
 import { toast } from "sonner";
 
 import { TemplateFile, TemplateFolder } from "../lib/path-to-json";
@@ -463,3 +463,4 @@ export const useFileExplorer = create<FileExplorerState>((set, get) => ({
   },
 
 }));
+

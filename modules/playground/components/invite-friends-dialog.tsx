@@ -1,14 +1,14 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect } from "react"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/ui/dialog"
-import { Button } from "@/components/ui/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/ui/avatar"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Loader2, UserPlus, Check } from "lucide-react"
 import { getFriends } from "@/modules/auth/actions/friends"
 import { sendCollabInvite } from "@/modules/auth/actions/collab"
 import { toast } from "sonner"
-import { ScrollArea } from "@/components/ui/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface Friend {
     id: string
@@ -123,3 +123,4 @@ export const InviteFriendsDialog = ({ playgroundId, children }: { playgroundId: 
         </Dialog>
     )
 }
+

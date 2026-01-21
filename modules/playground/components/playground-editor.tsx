@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useRef, useEffect, useCallback, useState } from "react"
 import Editor, { type Monaco } from "@monaco-editor/react"
@@ -146,7 +146,7 @@ export const PlaygroundEditor = ({
   }, [playgroundId, currentUser.name])
 
   /* =========================
-     YJS ↔ Monaco Binding (per file)
+     YJS â†” Monaco Binding (per file)
   ========================= */
 
   useEffect(() => {
@@ -189,7 +189,7 @@ export const PlaygroundEditor = ({
   }, [activeFile?.id])
 
   /* =========================
-     YJS → React State Sync
+     YJS â†’ React State Sync
      (THIS FIXES REALTIME)
   ========================= */
 
@@ -219,10 +219,10 @@ export const PlaygroundEditor = ({
       <div className="absolute bottom-2 right-2 z-10 px-2 py-1 rounded text-xs bg-background/80 backdrop-blur border shadow-sm flex items-center gap-1">
         <div
           className={`w-2 h-2 rounded-full ${status === "connected"
-              ? "bg-green-500"
-              : status === "connecting"
-                ? "bg-yellow-500 animate-pulse"
-                : "bg-red-500"
+            ? "bg-green-500"
+            : status === "connecting"
+              ? "bg-yellow-500 animate-pulse"
+              : "bg-red-500"
             }`}
         />
         <span className="capitalize text-muted-foreground">{status}</span>
@@ -236,8 +236,9 @@ export const PlaygroundEditor = ({
         language={
           activeFile ? getEditorLanguage(activeFile.fileExtension || "") : "plaintext"
         }
-        options={defaultEditorOptions}
+        options={defaultEditorOptions as any}
       />
     </div>
   )
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import {
@@ -17,7 +17,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/ui/collapsible";
+} from "@/components/ui/collapsible";
 import {
   Sidebar,
   SidebarContent,
@@ -30,16 +30,16 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarRail,
-} from "@/components/ui/ui/sidebar";
+} from "@/components/ui/sidebar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
-} from "@/components/ui/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 
 import RenameFolderDialog from "./dialogs/rename-folder-dialog";
 import NewFolderDialog from "./dialogs/new-folder-dialog";
@@ -490,3 +490,4 @@ function TemplateNode({
     );
   }
 }
+

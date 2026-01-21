@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/ui/button";
-import { Textarea } from "@/components/ui/ui/textarea";
-import { Avatar, AvatarFallback } from "@/components/ui/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 import {
     Loader2,
@@ -34,9 +34,9 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import {
     TooltipProvider,
-} from "@/components/ui/ui/tooltip";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/ui/tabs";
-import { Input } from "@/components/ui/ui/input";
+} from "@/components/ui/tooltip";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -44,7 +44,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
     DropdownMenuCheckboxItem,
-} from "@/components/ui/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import "katex/dist/katex.min.css";
 import Image from "next/image";
 import Stream from "stream";
@@ -153,111 +153,111 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
         }
     };
 
-   const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+    const handleSendMessage = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!input.trim() || isLoading) return;
 
-    const messageType =
-      chatMode === "chat"
-        ? "chat"
-        : chatMode === "review"
-        ? "code_review"
-        : chatMode === "fix"
-        ? "error_fix"
-        : "optimization";
+        const messageType =
+            chatMode === "chat"
+                ? "chat"
+                : chatMode === "review"
+                    ? "code_review"
+                    : chatMode === "fix"
+                        ? "error_fix"
+                        : "optimization";
 
-    const newMessage: ChatMessage = {
-      role: "user",
-      content: input.trim(),
-      timestamp: new Date(),
-      id: Date.now().toString(),
-      type: messageType,
-    };
-
-    setMessages((prev) => [...prev, newMessage]);
-    setInput("");
-    setIsLoading(true);
-
-    try {
-      const contextualMessage = getChatModePrompt(chatMode, input.trim());
-
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: contextualMessage,
-          history: messages.slice(-10).map((msg) => ({
-            role: msg.role,
-            content: msg.content,
-          })),
-          stream: streamResponse,
-          mode: chatMode,
-          model,
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "assistant",
-            content: data.response,
+        const newMessage: ChatMessage = {
+            role: "user",
+            content: input.trim(),
             timestamp: new Date(),
             id: Date.now().toString(),
             type: messageType,
-            tokens: data.tokens,
-            model: data.model || "AI Assistant",
-          },
-        ]);
-      } else {
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "assistant",
-            content:
-              "Sorry, I encountered an error while processing your request. Please try again.",
-            timestamp: new Date(),
-            id: Date.now().toString(),
-          },
-        ]);
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content:
-            "I'm having trouble connecting right now. Please check your internet connection and try again.",
-          timestamp: new Date(),
-          id: Date.now().toString(),
-        },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+        };
+
+        setMessages((prev) => [...prev, newMessage]);
+        setInput("");
+        setIsLoading(true);
+
+        try {
+            const contextualMessage = getChatModePrompt(chatMode, input.trim());
+
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    message: contextualMessage,
+                    history: messages.slice(-10).map((msg) => ({
+                        role: msg.role,
+                        content: msg.content,
+                    })),
+                    stream: streamResponse,
+                    mode: chatMode,
+                    model,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        role: "assistant",
+                        content: data.response,
+                        timestamp: new Date(),
+                        id: Date.now().toString(),
+                        type: messageType,
+                        tokens: data.tokens,
+                        model: data.model || "AI Assistant",
+                    },
+                ]);
+            } else {
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        role: "assistant",
+                        content:
+                            "Sorry, I encountered an error while processing your request. Please try again.",
+                        timestamp: new Date(),
+                        id: Date.now().toString(),
+                    },
+                ]);
+            }
+        } catch (error) {
+            console.error("Error sending message:", error);
+            setMessages((prev) => [
+                ...prev,
+                {
+                    role: "assistant",
+                    content:
+                        "I'm having trouble connecting right now. Please check your internet connection and try again.",
+                    timestamp: new Date(),
+                    id: Date.now().toString(),
+                },
+            ]);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const exportChat = () => {
-         const chatData = {
-      messages,
-      timestamp: new Date().toISOString(),
-    };
-    const blob = new Blob([JSON.stringify(chatData, null, 2)], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `ai-chat-${new Date().toISOString().split("T")[0]}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+        const chatData = {
+            messages,
+            timestamp: new Date().toISOString(),
+        };
+        const blob = new Blob([JSON.stringify(chatData, null, 2)], {
+            type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `ai-chat-${new Date().toISOString().split("T")[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     };
 
     const filteredMessages = messages
@@ -512,7 +512,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                                     remarkPlugins={[remarkGfm, remarkMath]}
                                                     rehypePlugins={[rehypeKatex]}
                                                     components={{
-                                                        code: ({ children, className, inline }) => {
+                                                        code: ({ children, className, inline }: any) => {
                                                             if (inline) {
                                                                 return (
                                                                     <code className="bg-zinc-800 px-1 py-0.5 rounded text-sm">
@@ -627,7 +627,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                                 />
                                 <div className="absolute right-3 bottom-3 flex items-center gap-2">
                                     <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-xs text-zinc-500 bg-zinc-800 border border-zinc-700 rounded">
-                                        ⌘↵
+                                        âŒ˜â†µ
                                     </kbd>
                                 </div>
                             </div>
@@ -649,3 +649,4 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
         </TooltipProvider>
     );
 };
+

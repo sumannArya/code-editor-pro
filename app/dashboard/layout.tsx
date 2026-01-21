@@ -1,4 +1,4 @@
-import { SidebarProvider } from "@/components/ui/ui/sidebar";
+﻿import { SidebarProvider } from "@/components/ui/sidebar";
 import { getALLPlaygroundForUser } from "@/modules/dashboard/actions";
 import { DashboardSidebar } from "@/modules/dashboard/components/dashboard-sidebar";
 import { UsernameModal } from "@/components/dashboard/username-modal";
@@ -45,3 +45,4 @@ export default async function DashboardLayout({
     </SidebarProvider>
   )
 }
+
