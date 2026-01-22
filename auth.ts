@@ -4,7 +4,6 @@ import authConfig from "./auth.config";
 import { db } from "./lib/db";
 import { getUserById } from "./modules/auth/actions";
 
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async signIn({ user, account }) {
@@ -56,7 +55,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               userId: existingUser.id,
               type: account.type,
               provider: account.provider,
-              ProviderAccountId: account.providerAccountId,
+              providerAccountId: account.providerAccountId, // ✅ FIXED
               refreshToken: account.refresh_token,
               accessToken: account.access_token,
               expiresAt: account.expires_at,
@@ -72,6 +71,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       return true;
     },
+
     async jwt({ token }) {
       if (!token.sub) return token;
 
@@ -81,17 +81,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       token.name = existingUser.name;
       token.email = existingUser.email;
       token.role = existingUser.role;
-
       token.username = existingUser.username;
 
       return token;
     },
+
     async session({ session, token }) {
       if (token.sub && session.user) {
         session.user.id = token.sub
-      }
-
-      if (token.sub && session.user) {
         session.user.role = token.role;
         // @ts-ignore
         session.user.username = token.username;
@@ -99,6 +96,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     }
   },
+
   secret: process.env.AUTH_SECRET,
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
