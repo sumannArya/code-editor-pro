@@ -227,7 +227,7 @@ export const PlaygroundEditor = ({
   ========================= */
 
   return (
-    <div className="h-full relative">
+    <div className="h-full w-full relative">
       {/* Status */}
       <div className="absolute bottom-2 right-2 z-10 px-2 py-1 rounded text-xs bg-background/80 backdrop-blur border shadow-sm flex items-center gap-1">
         <div

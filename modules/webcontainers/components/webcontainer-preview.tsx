@@ -102,7 +102,7 @@ const WebContainerPreview = ({
             setLoadingState((prev) => ({ ...prev, starting: true }));
             return;
           }
-        } catch (error) {}
+        } catch (error) { }
 
         // Step-1 transform data
         setLoadingState((prev) => ({ ...prev, transforming: true }));
@@ -152,7 +152,7 @@ const WebContainerPreview = ({
           );
         }
 
-        const installProcess = await instance.spawn("npm", ["install"]);
+        const installProcess = await instance.spawn("npm", ["install", "--prefer-offline", "--no-audit", "--no-progress"]);
 
         installProcess.output.pipeTo(
           new WritableStream({
@@ -243,7 +243,7 @@ const WebContainerPreview = ({
   }, [instance, templateData, isSetupComplete, isSetupInProgress]);
 
   useEffect(() => {
-    return () => {};
+    return () => { };
   }, []);
 
   if (isLoading) {
@@ -289,13 +289,12 @@ const WebContainerPreview = ({
 
     return (
       <span
-        className={`text-sm font-medium ${
-          isComplete
+        className={`text-sm font-medium ${isComplete
             ? "text-green-600"
             : isActive
-            ? "text-blue-600"
-            : "text-gray-500"
-        }`}
+              ? "text-blue-600"
+              : "text-gray-500"
+          }`}
       >
         {label}
       </span>
