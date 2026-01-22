@@ -15,7 +15,7 @@ export const sendCollabInvite = async (receiverId: string, playgroundId: string)
             return { error: "Cannot invite yourself" }
         }
 
-        // Check if invite already exists
+        // Check if invite already exists in PENDING state
         const existingInvite = await db.collabInvite.findFirst({
             where: {
                 senderId: session.user.id,
@@ -29,11 +29,22 @@ export const sendCollabInvite = async (receiverId: string, playgroundId: string)
             return { error: "Invite already pending" }
         }
 
-        const invite = await db.collabInvite.create({
-            data: {
+        const invite = await db.collabInvite.upsert({
+            where: {
+                senderId_receiverId_playgroundId: {
+                    senderId: session.user.id,
+                    receiverId,
+                    playgroundId
+                }
+            },
+            update: {
+                status: "PENDING"
+            },
+            create: {
                 senderId: session.user.id,
                 receiverId,
                 playgroundId,
+                status: "PENDING"
             }
         })
 
