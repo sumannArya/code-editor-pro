@@ -1,5 +1,7 @@
 ﻿"use client"
 
+import { toast } from "sonner"
+
 import { useRef, useEffect, useCallback, useState } from "react"
 import Editor, { type Monaco } from "@monaco-editor/react"
 import { TemplateFile } from "../lib/path-to-json"
@@ -134,6 +136,17 @@ export const PlaygroundEditor = ({
     provider.awareness.setLocalStateField("user", {
       name: currentUser.name || "Anonymous",
       color: userColorRef.current,
+    })
+
+    provider.awareness.on("update", ({ added }: any) => {
+      added.forEach((clientId: number) => {
+        if (clientId !== provider.awareness.clientID) {
+          const state = provider.awareness.getStates().get(clientId)
+          if (state && state.user && state.user.name) {
+            toast.success(`${state.user.name} joined the room`)
+          }
+        }
+      })
     })
 
     docRef.current = doc
