@@ -9,6 +9,10 @@ export const sendCollabInvite = async (receiverId: string, playgroundId: string)
         return { error: "Unauthorized" }
     }
 
+    if (!playgroundId) {
+        return { error: "Playground ID is required" }
+    }
+
     try {
         // user cannot invite themselves
         if (session.user.id === receiverId) {
@@ -49,9 +53,9 @@ export const sendCollabInvite = async (receiverId: string, playgroundId: string)
         })
 
         return { success: "Invite sent!", invite }
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error sending collab invite:", error)
-        return { error: "Failed to send invite" }
+        return { error: error.message || "Failed to send invite" }
     }
 }
 
