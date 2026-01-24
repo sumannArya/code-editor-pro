@@ -1,21 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images:{
-    remotePatterns:[
+  images: {
+    remotePatterns: [
       {
-        protocol:"https",
-        hostname:"*",
-        port:'',
-        pathname:"/**"
+        protocol: "https",
+        hostname: "*",
+        port: '',
+        pathname: "/**"
       }
     ]
   },
   async headers() {
     return [
       {
-        // Apply to all routes
-        source: '/:path*',
+        // Apply to playground routes only
+        source: '/playground/:path*',
         headers: [
           {
             key: 'Cross-Origin-Opener-Policy',
@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  reactStrictMode:false
+  reactStrictMode: false
 };
 
 export default nextConfig;
